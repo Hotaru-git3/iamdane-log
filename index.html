@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en" class="scroll-smooth">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Central hub and portfolio for iamdane.me"
+    />
+    <link rel="stylesheet" href="./src/output.css" />
+    <title>iamdane.me | Digital Hub</title>
+  </head>
+  <body
+    class="bg-white text-[#0a0a0a] antialiased selection:bg-black selection:text-white"
+  >
+    <header
+      id="navbar"
+      class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent"
+    >
+      <div
+        class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between"
+      >
+        <a href="#" class="text-lg font-semibold tracking-tight z-50"
+          >iamdane.me</a
+        >
+
+        <nav class="hidden md:flex items-center space-x-8">
+          <a
+            href="#hero"
+            class="text-sm text-gray-500 hover:text-black transition-colors"
+            >Home</a
+          >
+          <a
+            href="#network"
+            class="text-sm text-gray-500 hover:text-black transition-colors"
+            >Network</a
+          >
+          <a
+            href="#about"
+            class="text-sm text-gray-500 hover:text-black transition-colors"
+            >About</a
+          >
+          <a
+            href="#contact"
+            class="text-sm font-medium px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+            >Contact</a
+          >
+        </nav>
+
+        <button id="mobile-menu-btn" class="md:hidden text-gray-600 z-50 p-2">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-6 h-6"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M3.75 9h16.5m-16.5 6.75h16.5"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        id="mobile-menu"
+        class="fixed top-0 left-0 w-full h-screen bg-white z-40 flex flex-col items-center justify-center pt-20 space-y-8 transform -translate-y-full transition-transform duration-300 ease-in-out"
+      >
+        <a
+          href="#hero"
+          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
+          >Home</a
+        >
+        <a
+          href="#network"
+          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
+          >Network</a
+        >
+        <a
+          href="#about"
+          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
+          >About</a
+        >
+        <a
+          href="#contact"
+          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
+          >Contact</a
+        >
+      </div>
+    </header>
+
+    <main>
+      <section
+        id="hero"
+        class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20"
+      >
+        <div class="space-y-6">
+          <span
+            class="inline-block py-1 px-3 rounded-full bg-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-500"
+          >
+            System Online
+          </span>
+
+          <h1
+            class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6"
+          >
+            iamdane.me
+          </h1>
+
+          <p
+            class="text-lg md:text-xl text-gray-500 max-w-lg mx-auto font-light"
+          >
+            just a central hub for my deployments and technical side quests ✌️
+          </p>
+
+          <div class="pt-4">
+            <a
+              href="#network"
+              class="group relative px-8 py-3 rounded-full bg-black text-white text-sm font-medium transition-transform hover:scale-105 inline-flex items-center"
+            >
+              Explore Network
+              <svg
+                class="w-4 h-4 ml-2 transition-transform group-hover:translate-y-1"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M19 14l-7 7m0 0l-7-7m7 7V3"
+                ></path>
+              </svg>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="network"
+        class="py-32 px-6 bg-[#fafafa] border-t border-gray-100"
+      >
+        <div class="max-w-6xl mx-auto">
+          <div
+            class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-4"
+          >
+            <div>
+              <h2 class="text-3xl font-semibold tracking-tight mb-2">
+                The Network
+              </h2>
+              <p class="text-gray-500 max-w-md font-light leading-relaxed">
+                keeping all my ecosystems modular and active twin ⚡
+              </p>
+            </div>
+            <div
+              class="flex items-center space-x-2 text-xs font-mono text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100"
+            >
+              <span class="relative flex h-2 w-2">
+                <span
+                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
+                ></span>
+                <span
+                  class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
+                ></span>
+              </span>
+              <span>All Systems Operational</span>
+            </div>
+          </div>
+
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div
+              onclick="window.open('https://nonton.iamdane.me', '_blank')"
+              class="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 hover:border-gray-300 flex flex-col h-full cursor-pointer"
+            >
+              <div class="p-8 pb-0 flex flex-col flex-grow">
+                <div class="mb-6 flex justify-between items-start">
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-widest text-blue-600"
+                    >Stream Infrastructure</span
+                  >
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                </div>
+                <h3
+                  class="text-xl font-medium mb-2 group-hover:text-blue-600 transition-colors"
+                >
+                  nonton.iamdane.me
+                </h3>
+                <p
+                  class="text-gray-500 text-sm leading-relaxed mb-6 font-light"
+                >
+                  self-hosting my own cinematic universe. no subscriptions, just
+                  vibes and movies ✌️🎬
+                </p>
+              </div>
+
+              <div class="px-8 pb-8 mt-auto">
+                <div
+                  class="h-48 w-full rounded-lg overflow-hidden border border-gray-100 bg-gray-50 relative"
+                >
+                  <img
+                    src="./public/jellyfin.png"
+                    alt="Stream Preview"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              <div class="px-8 py-4 border-t border-gray-50 bg-gray-50/50">
+                <a
+                  href="https://nonton.iamdane.me"
+                  target="_blank"
+                  class="inline-flex items-center text-sm font-medium text-black hover:opacity-70 transition-opacity"
+                >
+                  Launch Stream
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div
+              onclick="window.open('https://anime.iamdane.me', '_blank')"
+              class="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 hover:border-gray-300 flex flex-col h-full cursor-pointer"
+            >
+              <div class="p-8 pb-0 flex flex-col flex-grow">
+                <div class="mb-6 flex justify-between items-start">
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-widest text-purple-600"
+                    >Anime Info</span
+                  >
+                  <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                </div>
+                <h3
+                  class="text-xl font-medium mb-2 group-hover:text-purple-600 transition-colors"
+                >
+                  anime.iamdane.me
+                </h3>
+                <p
+                  class="text-gray-500 text-sm leading-relaxed mb-6 font-light"
+                >
+                  just a clean way to check what i'm watching. cleaner than MAL
+                  and zero bloat, i guess? lol ✌️⚡
+                </p>
+              </div>
+
+              <div class="px-8 pb-8 mt-auto">
+                <div
+                  class="h-48 w-full rounded-lg overflow-hidden border border-gray-100 bg-gray-50 relative"
+                >
+                  <img
+                    src="./public/anime.png"
+                    alt="Anime Preview"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              <div class="px-8 py-4 border-t border-gray-50 bg-gray-50/50">
+                <a
+                  href="https://anime.iamdane.me"
+                  target="_blank"
+                  class="inline-flex items-center text-sm font-medium text-black hover:opacity-70 transition-opacity"
+                >
+                  Find Your Anime!
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+
+            <div
+              onclick="window.open('https://status.iamdane.me', '_blank')"
+              class="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 hover:border-gray-300 flex flex-col h-full cursor-pointer"
+            >
+              <div class="p-8 pb-0 flex flex-col flex-grow">
+                <div class="mb-6 flex justify-between items-start">
+                  <span
+                    class="text-[10px] font-bold uppercase tracking-widest text-orange-600"
+                    >Status | Stream</span
+                  >
+                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                </div>
+                <h3
+                  class="text-xl font-medium mb-2 group-hover:text-orange-600 transition-colors"
+                >
+                  status.iamdane.me
+                </h3>
+                <p
+                  class="text-gray-500 text-sm leading-relaxed mb-6 font-light"
+                >
+                  checking the pulse of the servers. if it's green, we're eating
+                  good twin 🟢⚡
+                </p>
+              </div>
+
+              <div class="px-8 pb-8 mt-auto">
+                <div
+                  class="h-48 w-full rounded-lg overflow-hidden border border-gray-100 bg-gray-50 relative"
+                >
+                  <img
+                    src="./public/status.png"
+                    alt="Status Preview"
+                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                </div>
+              </div>
+
+              <div class="px-8 py-4 border-t border-gray-50 bg-gray-50/50">
+                <a
+                  href="https://status.iamdane.me"
+                  target="_blank"
+                  class="inline-flex items-center text-sm font-medium text-black hover:opacity-70 transition-opacity"
+                >
+                  Check Status!
+                  <svg
+                    class="w-4 h-4 ml-1"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                    ></path>
+                  </svg>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="about" class="py-32 px-6 bg-white">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-3xl font-semibold tracking-tight mb-8">
+            what's this? 
+          </h2>
+          <div class="prose prose-lg text-gray-600 font-light leading-relaxed">
+            <p class="mb-6">
+              Welcome to <span class="font-medium text-black">iamdane.me</span>.
+            </p>
+            <p class="mb-6">
+              everything here is decentralized and running on its own subdomain because modular is just better 🤝 cleaner architecture, better vibes
+            </p>
+            <p>
+              it's just a direct window into my infrastructure—from dns management to ui design.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="py-32 px-6 bg-[#0a0a0a] text-white">
+  <div class="max-w-xl mx-auto text-center">
+    <h2 class="text-3xl font-semibold tracking-tight mb-4">stay in touch</h2>
+    <p class="text-gray-400 mb-10">
+      just a place for my technical logs and projects ✌️
+    </p>
+
+    <div class="flex flex-col md:flex-row justify-center items-center gap-4">
+      <a href="mailto:zidanesolahudin123@gmail.com" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
+        hello@iamdane.me
+      </a>
+      <a href="https://github.com/Hotaru-git3" target="_blank" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
+        GitHub
+      </a>
+      <a href="https://www.instagram.com/zdansln?igsh=ejlyN3dpYzVnNXF4" target="_blank" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
+        Instagram
+      </a>
+      <a href="https://www.linkedin.com/in/zidane-solahudin-573933345" target="_blank" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
+        In
+      </a>
+    </div>
+
+    <div class="mt-16 pt-8 border-t border-gray-800">
+      <p class="text-xs text-gray-500 font-mono">
+        SYSTEM STATUS: ONLINE <br />
+        © 2026 iamdane.me — built with intent ⚡
+      </p>
+    </div>
+  </div>
+</section>
+    </main>
+
+    <!-- Tailwind Safelist: Hidden div to prevent class purging -->
+    <div
+      class="hidden bg-white bg-white/90 z-40 z-50 pt-20 justify-center -translate-y-full translate-y-0 shadow-sm border-gray-200 overflow-hidden"
+    ></div>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
