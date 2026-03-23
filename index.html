@@ -51,7 +51,7 @@
           iamdane.me
         </a>
 
-        <!-- DESKTOP NAVIGATION - added Achievement link -->
+        <!-- DESKTOP NAVIGATION -->
         <nav class="hidden md:flex items-center space-x-7">
           <a
             href="#hero"
@@ -93,7 +93,7 @@
         <!-- MOBILE MENU BUTTON -->
         <button
           id="mobile-menu-btn"
-          class="md:hidden text-gray-700 z-50 p-1 -mr-2"
+          class="md:hidden text-gray-700 z-50 p-2 -mr-2 focus:outline-none active:outline-none"
           aria-label="menu"
         >
           <svg
@@ -102,7 +102,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-6 h-6"
+            class="w-6 h-6 pointer-events-none"
           >
             <path
               stroke-linecap="round"
@@ -120,12 +120,11 @@
       class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300 md:hidden"
     ></div>
 
-    <!-- MOBILE MENU - with close button & Achievement link -->
+    <!-- MOBILE MENU -->
     <div
       id="mobile-menu"
       class="fixed top-0 right-0 w-full sm:w-80 h-screen bg-white z-50 flex flex-col transform translate-x-full transition-transform duration-300 ease-out shadow-2xl md:hidden"
     >
-      <!-- header inside menu with close button -->
       <div
         class="flex items-center justify-between px-6 pt-5 pb-3 border-b border-gray-100"
       >
@@ -134,7 +133,7 @@
         >
         <button
           id="mobile-menu-close"
-          class="text-gray-500 hover:text-gray-900 p-2 -mr-2 transition-colors"
+          class="text-gray-500 hover:text-gray-900 p-2 -mr-2 transition-colors focus:outline-none"
           aria-label="close menu"
         >
           <svg
@@ -143,7 +142,7 @@
             viewBox="0 0 24 24"
             stroke-width="1.5"
             stroke="currentColor"
-            class="w-5 h-5"
+            class="w-5 h-5 pointer-events-none"
           >
             <path
               stroke-linecap="round"
@@ -154,7 +153,6 @@
         </button>
       </div>
 
-      <!-- navigation links - includes Achievement -->
       <div class="flex flex-col px-6 py-8 space-y-6 flex-grow">
         <a
           href="#hero"
@@ -188,7 +186,6 @@
         >
       </div>
 
-      <!-- bottom action -->
       <div class="px-6 pb-10 pt-4 border-t border-gray-100">
         <a
           href="#contact"
