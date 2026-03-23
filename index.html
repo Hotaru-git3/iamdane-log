@@ -2,53 +2,100 @@
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, viewport-fit=cover"
+    />
     <meta
       name="description"
       content="Central hub and portfolio for iamdane.me"
     />
-    <link rel="stylesheet" href="./src/output.css" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        font-family:
+          "Inter",
+          system-ui,
+          -apple-system,
+          BlinkMacSystemFont,
+          "Segoe UI",
+          Roboto,
+          sans-serif;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      /* no extra styles needed - Tailwind handles everything */
+    </style>
     <title>iamdane.me | Digital Hub</title>
   </head>
   <body
-    class="bg-white text-[#0a0a0a] antialiased selection:bg-black selection:text-white"
+    class="bg-white text-[#0a0a0a] antialiased selection:bg-black selection:text-white overflow-x-hidden"
   >
     <header
       id="navbar"
-      class="fixed top-0 w-full z-50 transition-all duration-300 border-b border-transparent"
+      class="fixed top-0 w-full z-50 transition-all duration-300 bg-white/95 backdrop-blur-sm border-b border-gray-100/50"
     >
       <div
-        class="max-w-6xl mx-auto px-6 h-20 flex items-center justify-between"
+        class="max-w-6xl mx-auto px-5 h-14 md:h-16 flex items-center justify-between"
       >
-        <a href="#" class="text-lg font-semibold tracking-tight z-50"
-          >iamdane.me</a
+        <a
+          href="#"
+          class="text-base md:text-lg font-medium tracking-tight text-gray-900 hover:opacity-70 transition-opacity"
         >
+          iamdane.me
+        </a>
 
-        <nav class="hidden md:flex items-center space-x-8">
+        <!-- DESKTOP NAVIGATION - added Achievement link -->
+        <nav class="hidden md:flex items-center space-x-7">
           <a
             href="#hero"
-            class="text-sm text-gray-500 hover:text-black transition-colors"
+            class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
             >Home</a
           >
           <a
-            href="#network"
-            class="text-sm text-gray-500 hover:text-black transition-colors"
-            >Network</a
-          >
-          <a
             href="#about"
-            class="text-sm text-gray-500 hover:text-black transition-colors"
+            class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
             >About</a
           >
           <a
+            href="#skills"
+            class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >Skills</a
+          >
+          <a
+            href="#experience"
+            class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >Experience</a
+          >
+          <a
+            href="#achievement"
+            class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >Achievement</a
+          >
+          <a
+            href="#network"
+            class="text-sm text-gray-500 hover:text-gray-900 transition-colors"
+            >Network</a
+          >
+          <a
             href="#contact"
-            class="text-sm font-medium px-4 py-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors"
+            class="text-sm px-4 py-1.5 bg-gray-900 text-white rounded-full hover:bg-gray-700 transition-colors"
             >Contact</a
           >
         </nav>
 
-        <button id="mobile-menu-btn" class="md:hidden text-gray-600 z-50 p-2">
+        <!-- MOBILE MENU BUTTON -->
+        <button
+          id="mobile-menu-btn"
+          class="md:hidden text-gray-700 z-50 p-1 -mr-2"
+          aria-label="menu"
+        >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -65,58 +112,107 @@
           </svg>
         </button>
       </div>
+    </header>
 
+    <!-- overlay backdrop -->
+    <div
+      id="mobile-overlay"
+      class="fixed inset-0 bg-black/20 backdrop-blur-sm z-40 hidden opacity-0 transition-opacity duration-300 md:hidden"
+    ></div>
+
+    <!-- MOBILE MENU - with close button & Achievement link -->
+    <div
+      id="mobile-menu"
+      class="fixed top-0 right-0 w-full sm:w-80 h-screen bg-white z-50 flex flex-col transform translate-x-full transition-transform duration-300 ease-out shadow-2xl md:hidden"
+    >
+      <!-- header inside menu with close button -->
       <div
-        id="mobile-menu"
-        class="fixed top-0 left-0 w-full h-screen bg-white z-40 flex flex-col items-center justify-center pt-20 space-y-8 transform -translate-y-full transition-transform duration-300 ease-in-out"
+        class="flex items-center justify-between px-6 pt-5 pb-3 border-b border-gray-100"
       >
+        <span class="text-sm font-medium text-gray-400 tracking-wide"
+          >MENU</span
+        >
+        <button
+          id="mobile-menu-close"
+          class="text-gray-500 hover:text-gray-900 p-2 -mr-2 transition-colors"
+          aria-label="close menu"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="w-5 h-5"
+          >
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M6 18L18 6M6 6l12 12"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <!-- navigation links - includes Achievement -->
+      <div class="flex flex-col px-6 py-8 space-y-6 flex-grow">
         <a
           href="#hero"
-          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
+          class="mobile-link text-xl font-normal text-gray-800 hover:text-black transition-colors py-1"
           >Home</a
         >
         <a
-          href="#network"
-          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
-          >Network</a
-        >
-        <a
           href="#about"
-          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
+          class="mobile-link text-xl font-normal text-gray-800 hover:text-black transition-colors py-1"
           >About</a
         >
         <a
-          href="#contact"
-          class="text-2xl font-medium mobile-link hover:text-gray-500 transition-colors"
-          >Contact</a
+          href="#skills"
+          class="mobile-link text-xl font-normal text-gray-800 hover:text-black transition-colors py-1"
+          >Skills</a
+        >
+        <a
+          href="#experience"
+          class="mobile-link text-xl font-normal text-gray-800 hover:text-black transition-colors py-1"
+          >Experience</a
+        >
+        <a
+          href="#achievement"
+          class="mobile-link text-xl font-normal text-gray-800 hover:text-black transition-colors py-1"
+          >Achievement</a
+        >
+        <a
+          href="#network"
+          class="mobile-link text-xl font-normal text-gray-800 hover:text-black transition-colors py-1"
+          >Network</a
         >
       </div>
-    </header>
 
-    <main>
+      <!-- bottom action -->
+      <div class="px-6 pb-10 pt-4 border-t border-gray-100">
+        <a
+          href="#contact"
+          class="mobile-link inline-flex items-center justify-center w-full px-6 py-3 bg-gray-900 text-white rounded-full text-sm font-medium hover:bg-gray-800 transition-colors"
+        >
+          Contact Me
+        </a>
+        <p class="text-center text-xs text-gray-400 mt-6">
+          ⚡ homelab · modular · active
+        </p>
+      </div>
+    </div>
+
+    <main class="overflow-hidden">
       <section
         id="hero"
-        class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-20"
+        class="min-h-screen flex flex-col justify-center items-center text-center px-6 pt-16"
       >
-        <div class="space-y-6">
-          <span
-            class="inline-block py-1 px-3 rounded-full bg-gray-100 text-[10px] font-bold uppercase tracking-widest text-gray-500"
-          >
-            System Online
-          </span>
-
+        <div class="space-y-6 max-w-5xl">
           <h1
-            class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-6"
+            class="text-5xl md:text-7xl lg:text-8xl font-bold tracking-tighter mb-4"
           >
             iamdane.me
           </h1>
-
-          <p
-            class="text-lg md:text-xl text-gray-500 max-w-lg mx-auto font-light"
-          >
-            just a central hub for my deployments and technical side quests ✌️
-          </p>
-
           <div class="pt-4">
             <a
               href="#network"
@@ -141,84 +237,699 @@
         </div>
       </section>
 
-      <section
-        id="network"
-        class="py-32 px-6 bg-[#fafafa] border-t border-gray-100"
-      >
-        <div class="max-w-6xl mx-auto">
-          <div
-            class="mb-20 flex flex-col md:flex-row md:items-end justify-between gap-4"
-          >
-            <div>
-              <h2 class="text-3xl font-semibold tracking-tight mb-2">
-                The Network
+      <section id="about" class="py-20 md:py-32 px-5 md:px-6 bg-white">
+        <div
+          class="max-w-6xl mx-auto flex flex-col lg:flex-row gap-12 lg:gap-16 items-start lg:items-center"
+        >
+          <div class="w-full lg:w-1/2">
+            <div class="mb-10">
+              <h2
+                class="text-3xl md:text-4xl font-semibold tracking-tight mb-2"
+              >
+                Identity
               </h2>
               <p class="text-gray-500 max-w-md font-light leading-relaxed">
-                keeping all my ecosystems modular and active twin ⚡
+                who am i? ⚡
               </p>
             </div>
             <div
-              class="flex items-center space-x-2 text-xs font-mono text-green-600 bg-green-50 px-3 py-1 rounded-full border border-green-100"
+              class="prose prose-lg text-gray-500 font-light leading-relaxed space-y-4"
             >
-              <span class="relative flex h-2 w-2">
+              <p>
+                Yo, I'm <span class="font-medium text-black">Dane</span>. I'm
+                currently a TMJ student at PNJ, diving deep into the worlds of
+                networking and cybersecurity.
+              </p>
+              <p>
+                When I'm not analyzing packets, grinding through CTF challenges
+                on Parrot OS, or catching up on Tensura, I'm usually building
+                out this homelab. Everything here is decentralized and running
+                on its own subdomain because modular architecture just hits
+                different 🤝
+              </p>
+              <p>
+                This space is a direct window into my infrastructure—from DNS
+                management with Cloudflare to keeping the servers humming.
+              </p>
+            </div>
+          </div>
+          <div class="w-full lg:w-1/2">
+            <div
+              class="bg-[#fafafa] border border-gray-200 rounded-2xl p-6 md:p-8 shadow-sm"
+            >
+              <div class="flex space-x-2 mb-6">
+                <div class="w-3 h-3 rounded-full bg-red-400"></div>
+                <div class="w-3 h-3 rounded-full bg-yellow-400"></div>
+                <div class="w-3 h-3 rounded-full bg-green-400"></div>
+              </div>
+              <div class="font-mono text-sm text-gray-600 space-y-3">
+                <p>
+                  <span class="text-purple-600">dane@homelab</span
+                  ><span class="text-gray-400">:~$</span> whoami
+                </p>
+                <p class="pl-4 text-gray-500">
+                  network_enthusiast && sec_student
+                </p>
+                <p class="pt-2">
+                  <span class="text-purple-600">dane@homelab</span
+                  ><span class="text-gray-400">:~$</span> cat current_focus.txt
+                </p>
+                <p class="pl-4 text-gray-500">> Cisco & Mikrotik</p>
+                <p class="pl-4 text-gray-500">> Infrastructure Deployment</p>
+                <p class="pl-4 text-gray-500">> CTF Player</p>
+                <p class="animate-pulse">_</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="skills"
+        class="py-20 md:py-32 px-5 md:px-6 bg-[#fafafa] border-t border-gray-100"
+      >
+        <div class="max-w-6xl mx-auto">
+          <div class="mb-14 md:mb-20">
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-2">
+              Skills
+            </h2>
+            <p class="text-gray-500 max-w-md font-light leading-relaxed">
+              the tools and tech i use to keep things running smoothly ⚡
+            </p>
+          </div>
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 md:gap-8"
+          >
+            <div
+              class="bg-white rounded-2xl border border-gray-200 p-6 md:p-7 hover:shadow-xl transition-all group"
+            >
+              <div class="mb-5">
                 <span
-                  class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"
-                ></span>
+                  class="text-[10px] font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full"
+                  >Net & Sec</span
+                >
+              </div>
+              <h3 class="text-xl font-medium mb-4 group-hover:text-blue-600">
+                Networking & Security
+              </h3>
+              <ul class="space-y-3 text-gray-500 font-light text-sm">
+                <li class="flex items-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></div>
+                  Cisco CCNA & SRWE
+                </li>
+                <li class="flex items-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></div>
+                  MikroTik (MTCNA Level)
+                </li>
+                <li class="flex items-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></div>
+                  CTF Player
+                </li>
+                <li class="flex items-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-blue-500 mr-3"></div>
+                  Parrot OS / Linux Admin
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bg-white rounded-2xl border border-gray-200 p-6 md:p-7 hover:shadow-xl transition-all group"
+            >
+              <div class="mb-5">
                 <span
-                  class="relative inline-flex rounded-full h-2 w-2 bg-green-500"
-                ></span>
-              </span>
-              <span>All Systems Operational</span>
+                  class="text-[10px] font-bold uppercase tracking-widest text-green-600 bg-green-50 px-3 py-1.5 rounded-full"
+                  >Infra</span
+                >
+              </div>
+              <h3 class="text-xl font-medium mb-4 group-hover:text-green-600">
+                Infrastructure
+              </h3>
+              <ul class="space-y-3 text-gray-500 font-light text-sm">
+                <li class="flex items-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500 mr-3"></div>
+                  Docker & Containerization
+                </li>
+                <li class="flex items-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500 mr-3"></div>
+                  Cloudflare DNS & Security
+                </li>
+                <li class="flex items-center">
+                  <div class="w-1.5 h-1.5 rounded-full bg-green-500 mr-3"></div>
+                  Vercel / Infrastructure as Code
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bg-white rounded-2xl border border-gray-200 p-6 md:p-7 hover:shadow-xl transition-all group"
+            >
+              <div class="mb-5">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-orange-600 bg-orange-50 px-3 py-1.5 rounded-full"
+                  >Dev</span
+                >
+              </div>
+              <h3 class="text-xl font-medium mb-4 group-hover:text-orange-600">
+                Development
+              </h3>
+              <ul class="space-y-3 text-gray-500 font-light text-sm">
+                <li class="flex items-center">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-3"
+                  ></div>
+                  Python, JavaScript, & C++
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-3"
+                  ></div>
+                  React & Modern Web Apps
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-orange-500 mr-3"
+                  ></div>
+                  Tailwind CSS / UI Design
+                </li>
+              </ul>
+            </div>
+            <div
+              class="bg-white rounded-2xl border border-gray-200 p-6 md:p-7 hover:shadow-xl transition-all group"
+            >
+              <div class="mb-5">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-emerald-600 bg-emerald-50 px-3 py-1.5 rounded-full"
+                  >Soft</span
+                >
+              </div>
+              <h3 class="text-xl font-medium mb-4 group-hover:text-emerald-600">
+                Soft Skill
+              </h3>
+              <ul class="space-y-3 text-gray-500 font-light text-sm">
+                <li class="flex items-center">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3"
+                  ></div>
+                  Public Speaking
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3"
+                  ></div>
+                  Team Collaboration
+                </li>
+                <li class="flex items-center">
+                  <div
+                    class="w-1.5 h-1.5 rounded-full bg-emerald-500 mr-3"
+                  ></div>
+                  Problem Solving
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="experience"
+        class="py-20 md:py-32 px-5 md:px-6 bg-white border-t border-gray-100"
+      >
+        <div class="max-w-6xl mx-auto">
+          <div class="mb-14 md:mb-20">
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-2">
+              Experience & Education
+            </h2>
+            <p class="text-gray-500 font-light leading-relaxed">
+              the academic grind and technical side quests.
+            </p>
+          </div>
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-7 lg:gap-8">
+            <div
+              class="relative bg-[#fafafa] rounded-2xl border border-gray-200 p-6 md:p-8 hover:shadow-xl transition-all flex flex-col h-full"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-1.5 bg-blue-600 rounded-t-2xl"
+              ></div>
+              <div
+                class="mb-5 flex flex-wrap justify-between items-start gap-2"
+              >
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-blue-600 bg-blue-50 px-3 py-1.5 rounded-full"
+                  >Current</span
+                >
+                <span class="text-xs font-mono text-gray-400"
+                  >Politeknik Negeri Jakarta</span
+                >
+              </div>
+              <h3 class="text-xl font-bold mb-1">
+                D4 Teknik Multimedia dan Jaringan
+              </h3>
+              <p class="text-sm font-semibold text-gray-700 mb-4">
+                University Student
+              </p>
+              <p class="text-gray-500 font-light text-sm leading-relaxed">
+                Deep diving into networking and cybersecurity. Maintain GPA
+                while exploring CCNA modules and active in CTF community.
+              </p>
+            </div>
+            <div
+              class="relative bg-[#fafafa] rounded-2xl border border-gray-200 p-6 md:p-8 hover:shadow-xl transition-all flex flex-col h-full"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-1.5 bg-gray-400 rounded-t-2xl"
+              ></div>
+              <div class="mb-5 flex flex-wrap justify-between gap-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-gray-500 bg-gray-50 px-3 py-1.5 rounded-full"
+                  >2022 - 2025</span
+                >
+                <span class="text-xs font-mono text-gray-400"
+                  >SMKN 3 Jakarta</span
+                >
+              </div>
+              <h3 class="text-xl font-bold mb-1">
+                Teknik Komputer Jaringan (TKJ)
+              </h3>
+              <p class="text-sm font-semibold text-gray-700 mb-4">
+                Vocational High School
+              </p>
+              <p class="text-gray-500 font-light text-sm leading-relaxed">
+                IT infrastructure basics: hardware, OS, routing & switching with
+                MikroTik & Cisco.
+              </p>
+            </div>
+            <div
+              class="relative bg-[#fafafa] rounded-2xl border border-gray-200 p-6 md:p-8 hover:shadow-xl transition-all flex flex-col h-full"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-1.5 bg-green-500 rounded-t-2xl"
+              ></div>
+              <div class="mb-5 flex flex-wrap justify-between gap-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-green-600 bg-green-50 px-3 py-1.5 rounded-full"
+                  >Project</span
+                >
+                <span class="text-xs font-mono text-gray-400">Deployed</span>
+              </div>
+              <h3 class="text-xl font-bold mb-1">Homelab Architecture</h3>
+              <p class="text-sm font-semibold text-gray-700 mb-4">
+                Systems & Infrastructure
+              </p>
+              <p class="text-gray-500 font-light text-sm leading-relaxed">
+                Decentralized server ecosystem. Docker, Cloudflare DNS,
+                monitoring dashboard.
+              </p>
+            </div>
+            <div
+              class="relative bg-[#fafafa] rounded-2xl border border-gray-200 p-6 md:p-8 hover:shadow-xl transition-all flex flex-col h-full"
+            >
+              <div
+                class="absolute top-0 left-0 w-full h-1.5 bg-purple-500 rounded-t-2xl"
+              ></div>
+              <div class="mb-5 flex flex-wrap justify-between gap-2">
+                <span
+                  class="text-[10px] font-bold uppercase tracking-widest text-purple-600 bg-purple-50 px-3 py-1.5 rounded-full"
+                  >Project</span
+                >
+                <span class="text-xs font-mono text-gray-400">Dev Log</span>
+              </div>
+              <h3 class="text-xl font-bold mb-1">Web-Based Audio Player</h3>
+              <p class="text-sm font-semibold text-gray-700 mb-4">
+                Software Development
+              </p>
+              <p class="text-gray-500 font-light text-sm leading-relaxed">
+                Audio streaming platform with database integration and clean UI
+                design.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ACHIEVEMENT SECTION - updated with actual data from CV -->
+      <section
+        id="achievement"
+        class="py-20 md:py-28 px-5 md:px-6 bg-white border-t border-gray-100"
+      >
+        <div class="max-w-6xl mx-auto">
+          <!-- Header -->
+          <div class="mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-2">
+              Achievements
+            </h2>
+            <p class="text-gray-500 max-w-md font-light leading-relaxed">
+              certifications, competitions & technical milestones 🏆
+            </p>
+          </div>
+
+          <!-- Achievement Grid -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5 md:gap-6"
+          >
+            <!-- Card 1: Python Certification -->
+            <div
+              class="group bg-[#fafafa] rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-blue-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded"
+                  >Jan 2024</span
+                >
+              </div>
+              <h3 class="text-base font-bold mb-1">Python Programming</h3>
+              <p class="text-xs text-gray-500 mb-3">Kreas Media Teknologi</p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Certified • Programming fundamentals & automation
+              </p>
+            </div>
+
+            <!-- Card 2: Film Competition - FLS2N -->
+            <div
+              class="group bg-[#fafafa] rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-purple-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-purple-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M15.75 10.5l4.72-4.72a.75.75 0 011.28.53v11.38a.75.75 0 01-1.28.53l-4.72-4.72M12 18.75H4.5a2.25 2.25 0 01-2.25-2.25V9m12.841 9.091L16.5 19.5m-1.409-1.409c.407-.407.659-.97.659-1.591v-4.5a2.25 2.25 0 00-2.25-2.25h-9"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded"
+                  >21 Mei 2024</span
+                >
+              </div>
+              <h3 class="text-base font-bold mb-1">Juara Harapan Satu FLS2N</h3>
+              <p class="text-xs text-gray-500 mb-3">
+                Film Pendek • Sudin Jakarta Pusat II
+              </p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Short film competition • Storytelling & production
+              </p>
+            </div>
+
+            <!-- Card 3: Museum Bahari Film Competition -->
+            <div
+              class="group bg-[#fafafa] rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-orange-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-orange-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded"
+                  >1 Nov 2024</span
+                >
+              </div>
+              <h3 class="text-base font-bold mb-1">Juara Kedua Lomba Film</h3>
+              <p class="text-xs text-gray-500 mb-3">
+                Museum Bahari • Dinas Kebudayaan
+              </p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                2nd Place • Cultural documentary short film
+              </p>
+            </div>
+
+            <!-- Card 4: MTCNA MikroTik -->
+            <div
+              class="group bg-[#fafafa] rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-emerald-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-emerald-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M6.75 7.5l3 2.25-3 2.25m4.5 0h3m-9 8.25h13.5A2.25 2.25 0 0021 18V6a2.25 2.25 0 00-2.25-2.25H5.25A2.25 2.25 0 003 6v12a2.25 2.25 0 002.25 2.25z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded"
+                  >22 Jan 2025</span
+                >
+              </div>
+              <h3 class="text-base font-bold mb-1">MTCNA</h3>
+              <p class="text-xs text-gray-500 mb-3">MikroTik Academy</p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                MikroTik training • Basic routing & configuration
+              </p>
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <!-- Second row -->
+          <div
+            class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6 mt-6"
+          >
+            <!-- Card 5: BNSP TKJ Certification -->
+            <div
+              class="group bg-[#fafafa] rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-indigo-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-indigo-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M9 3v2m6-2v2M9 19v2m6-2v2M5 9H3m2 6H3m18-6h-2m2 6h-2M7 19h10a2 2 0 002-2V7a2 2 0 00-2-2H7a2 2 0 00-2 2v10a2 2 0 002 2zM9 9h6v6H9V9z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded"
+                  >25 Apr 2025</span
+                >
+              </div>
+              <h3 class="text-base font-bold mb-1">Sertifikat Kejuruan TKJ</h3>
+              <p class="text-xs text-gray-500 mb-3">BNSP</p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                National Professional Certification • Computer & Network
+                Engineering
+              </p>
+            </div>
+
+            <!-- Card 6: IT Support Experience -->
+            <div
+              class="group bg-[#fafafa] rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-rose-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded"
+                  >Jul-Dec 2024</span
+                >
+              </div>
+              <h3 class="text-base font-bold mb-1">IT Support Intern</h3>
+              <p class="text-xs text-gray-500 mb-3">
+                BPKP (Badan Pengawasan Keuangan & Pembangunan)
+              </p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Network troubleshooting • Cisco switch config • Access Point
+                Tenda
+              </p>
+            </div>
+
+            <!-- Card 7: React & Web Development -->
+            <div
+              class="group bg-[#fafafa] rounded-xl border border-gray-200 p-5 hover:shadow-lg hover:border-gray-300 transition-all duration-300"
+            >
+              <div class="flex items-center justify-between mb-4">
+                <div
+                  class="w-10 h-10 rounded-full bg-cyan-100 flex items-center justify-center"
+                >
+                  <svg
+                    class="w-5 h-5 text-cyan-600"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="1.5"
+                      d="M17.25 6.75L22.5 12m0 0l-5.25 5.25M22.5 12h-15m6.75-5.25L9 12m0 0l5.25 5.25"
+                    />
+                  </svg>
+                </div>
+                <span
+                  class="text-[10px] font-mono text-gray-400 bg-gray-100 px-2 py-0.5 rounded"
+                  >2024-2025</span
+                >
+              </div>
+              <h3 class="text-base font-bold mb-1">React & JavaScript</h3>
+              <p class="text-xs text-gray-500 mb-3">
+                Self-taught • Project Based
+              </p>
+              <p class="text-xs text-gray-400 leading-relaxed">
+                Basic React framework • Modern web apps • Tailwind CSS
+              </p>
+            </div>
+          </div>
+
+          <!-- Summary badge -->
+          <div class="mt-12 text-center">
+            <div
+              class="inline-flex flex-wrap items-center justify-center gap-3 px-5 py-2.5 rounded-full bg-gray-50 border border-gray-200"
+            >
+              <span class="text-xs font-medium text-gray-600"
+                >🏆 7+ Certifications & Achievements</span
+              >
+              <span
+                class="w-1 h-1 rounded-full bg-gray-300 hidden sm:inline-block"
+              ></span>
+              <span class="text-xs font-medium text-gray-600"
+                >🎬 Film Competition Winner</span
+              >
+              <span
+                class="w-1 h-1 rounded-full bg-gray-300 hidden sm:inline-block"
+              ></span>
+              <span class="text-xs font-medium text-gray-600"
+                >🔧 IT Support Experience</span
+              >
+              <span
+                class="w-1 h-1 rounded-full bg-gray-300 hidden sm:inline-block"
+              ></span>
+              <span class="text-xs font-medium text-gray-600"
+                >⚡ React & Web Dev</span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="network"
+        class="py-20 md:py-28 px-5 md:px-6 bg-[#fafafa] border-t border-gray-100"
+      >
+        <div class="max-w-6xl mx-auto">
+          <!-- Header section -->
+          <div class="mb-12 md:mb-16">
+            <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-2">
+              The Network
+            </h2>
+            <p class="text-gray-500 max-w-md font-light leading-relaxed">
+              keeping all my ecosystems modular and active twin ⚡
+            </p>
+          </div>
+
+          <!-- Network Cards Grid -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Card 1: Jellyfin / nonton -->
             <div
               onclick="window.open('https://nonton.iamdane.me', '_blank')"
-              class="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 hover:border-gray-300 flex flex-col h-full cursor-pointer"
+              class="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-gray-300 cursor-pointer flex flex-col h-full"
             >
-              <div class="p-8 pb-0 flex flex-col flex-grow">
-                <div class="mb-6 flex justify-between items-start">
+              <div class="p-5 pb-2">
+                <div class="flex items-center justify-between mb-3">
                   <span
-                    class="text-[10px] font-bold uppercase tracking-widest text-blue-600"
-                    >Stream Infrastructure</span
+                    class="text-[11px] font-semibold uppercase tracking-wider text-blue-600 bg-blue-50 px-2.5 py-1 rounded-md"
+                    >Jellyfin</span
                   >
-                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    <span class="text-[10px] text-gray-400">online</span>
+                  </div>
                 </div>
                 <h3
-                  class="text-xl font-medium mb-2 group-hover:text-blue-600 transition-colors"
+                  class="text-lg font-semibold mb-1 group-hover:text-blue-600 transition-colors"
                 >
                   nonton.iamdane.me
                 </h3>
-                <p
-                  class="text-gray-500 text-sm leading-relaxed mb-6 font-light"
-                >
+                <p class="text-gray-500 text-sm leading-relaxed">
                   self-hosting my own cinematic universe. no subscriptions, just
-                  vibes and movies ✌️🎬
+                  vibes ✌️🎬
                 </p>
               </div>
-
-              <div class="px-8 pb-8 mt-auto">
+              <div class="px-5 pb-4 mt-auto">
                 <div
-                  class="h-48 w-full rounded-lg overflow-hidden border border-gray-100 bg-gray-50 relative"
+                  class="h-36 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200"
                 >
                   <img
                     src="./public/jellyfin.png"
-                    alt="Stream Preview"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    alt="Jellyfin Preview"
                   />
                 </div>
               </div>
-
-              <div class="px-8 py-4 border-t border-gray-50 bg-gray-50/50">
-                <a
-                  href="https://nonton.iamdane.me"
-                  target="_blank"
-                  class="inline-flex items-center text-sm font-medium text-black hover:opacity-70 transition-opacity"
+              <div class="px-5 py-3 border-t border-gray-100 bg-gray-50/40">
+                <span
+                  class="inline-flex items-center text-sm font-medium text-gray-700 group-hover:text-black transition-colors"
                 >
                   Launch Stream
                   <svg
-                    class="w-4 h-4 ml-1"
+                    class="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -227,59 +938,57 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      d="M9 5l7 7-7 7"
                     ></path>
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
 
+            <!-- Card 2: Anime -->
             <div
               onclick="window.open('https://anime.iamdane.me', '_blank')"
-              class="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 hover:border-gray-300 flex flex-col h-full cursor-pointer"
+              class="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-gray-300 cursor-pointer flex flex-col h-full"
             >
-              <div class="p-8 pb-0 flex flex-col flex-grow">
-                <div class="mb-6 flex justify-between items-start">
+              <div class="p-5 pb-2">
+                <div class="flex items-center justify-between mb-3">
                   <span
-                    class="text-[10px] font-bold uppercase tracking-widest text-purple-600"
-                    >Anime Info</span
+                    class="text-[11px] font-semibold uppercase tracking-wider text-purple-600 bg-purple-50 px-2.5 py-1 rounded-md"
+                    >AniList</span
                   >
-                  <div class="w-2 h-2 rounded-full bg-blue-500"></div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    <span class="text-[10px] text-gray-400">active</span>
+                  </div>
                 </div>
                 <h3
-                  class="text-xl font-medium mb-2 group-hover:text-purple-600 transition-colors"
+                  class="text-lg font-semibold mb-1 group-hover:text-purple-600 transition-colors"
                 >
                   anime.iamdane.me
                 </h3>
-                <p
-                  class="text-gray-500 text-sm leading-relaxed mb-6 font-light"
-                >
+                <p class="text-gray-500 text-sm leading-relaxed">
                   just a clean way to check what i'm watching. cleaner than MAL
-                  and zero bloat, i guess? lol ✌️⚡
+                  and zero bloat ✌️⚡
                 </p>
               </div>
-
-              <div class="px-8 pb-8 mt-auto">
+              <div class="px-5 pb-4 mt-auto">
                 <div
-                  class="h-48 w-full rounded-lg overflow-hidden border border-gray-100 bg-gray-50 relative"
+                  class="h-36 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200"
                 >
                   <img
                     src="./public/anime.png"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     alt="Anime Preview"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
-
-              <div class="px-8 py-4 border-t border-gray-50 bg-gray-50/50">
-                <a
-                  href="https://anime.iamdane.me"
-                  target="_blank"
-                  class="inline-flex items-center text-sm font-medium text-black hover:opacity-70 transition-opacity"
+              <div class="px-5 py-3 border-t border-gray-100 bg-gray-50/40">
+                <span
+                  class="inline-flex items-center text-sm font-medium text-gray-700 group-hover:text-black transition-colors"
                 >
-                  Find Your Anime!
+                  Browse Anime
                   <svg
-                    class="w-4 h-4 ml-1"
+                    class="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -288,59 +997,59 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      d="M9 5l7 7-7 7"
                     ></path>
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
 
+            <!-- Card 3: Status -->
             <div
               onclick="window.open('https://status.iamdane.me', '_blank')"
-              class="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 hover:border-gray-300 flex flex-col h-full cursor-pointer"
+              class="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-gray-300 cursor-pointer flex flex-col h-full"
             >
-              <div class="p-8 pb-0 flex flex-col flex-grow">
-                <div class="mb-6 flex justify-between items-start">
+              <div class="p-5 pb-2">
+                <div class="flex items-center justify-between mb-3">
                   <span
-                    class="text-[10px] font-bold uppercase tracking-widest text-orange-600"
-                    >Status | Stream</span
+                    class="text-[11px] font-semibold uppercase tracking-wider text-orange-600 bg-orange-50 px-2.5 py-1 rounded-md"
+                    >Uptime</span
                   >
-                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div class="flex items-center gap-1.5">
+                    <span
+                      class="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse"
+                    ></span>
+                    <span class="text-[10px] text-gray-400">live</span>
+                  </div>
                 </div>
                 <h3
-                  class="text-xl font-medium mb-2 group-hover:text-orange-600 transition-colors"
+                  class="text-lg font-semibold mb-1 group-hover:text-orange-600 transition-colors"
                 >
                   status.iamdane.me
                 </h3>
-                <p
-                  class="text-gray-500 text-sm leading-relaxed mb-6 font-light"
-                >
+                <p class="text-gray-500 text-sm leading-relaxed">
                   checking the pulse of the servers. if it's green, we're eating
                   good twin 🟢⚡
                 </p>
               </div>
-
-              <div class="px-8 pb-8 mt-auto">
+              <div class="px-5 pb-4 mt-auto">
                 <div
-                  class="h-48 w-full rounded-lg overflow-hidden border border-gray-100 bg-gray-50 relative"
+                  class="h-36 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200"
                 >
                   <img
                     src="./public/status.png"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                     alt="Status Preview"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                 </div>
               </div>
-
-              <div class="px-8 py-4 border-t border-gray-50 bg-gray-50/50">
-                <a
-                  href="https://status.iamdane.me"
-                  target="_blank"
-                  class="inline-flex items-center text-sm font-medium text-black hover:opacity-70 transition-opacity"
+              <div class="px-5 py-3 border-t border-gray-100 bg-gray-50/40">
+                <span
+                  class="inline-flex items-center text-sm font-medium text-gray-700 group-hover:text-black transition-colors"
                 >
-                  Check Status!
+                  Check Status
                   <svg
-                    class="w-4 h-4 ml-1"
+                    class="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -349,58 +1058,57 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      d="M9 5l7 7-7 7"
                     ></path>
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
 
+            <!-- Card 4: Productivity -->
             <div
               onclick="window.open('https://productivity.iamdane.me', '_blank')"
-              class="group bg-white rounded-2xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-gray-200/50 hover:-translate-y-1 hover:border-gray-300 flex flex-col h-full cursor-pointer"
+              class="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-gray-300 cursor-pointer flex flex-col h-full"
             >
-              <div class="p-8 pb-0 flex flex-col flex-grow">
-                <div class="mb-6 flex justify-between items-start">
+              <div class="p-5 pb-2">
+                <div class="flex items-center justify-between mb-3">
                   <span
-                    class="text-[10px] font-bold uppercase tracking-widest text-orange-600"
-                    >Productivity | Dashboard</span
+                    class="text-[11px] font-semibold uppercase tracking-wider text-emerald-600 bg-emerald-50 px-2.5 py-1 rounded-md"
+                    >Dashboard</span
                   >
-                  <div class="w-2 h-2 rounded-full bg-green-500"></div>
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    <span class="text-[10px] text-gray-400">active</span>
+                  </div>
                 </div>
                 <h3
-                  class="text-xl font-medium mb-2 group-hover:text-orange-600 transition-colors"
+                  class="text-lg font-semibold mb-1 group-hover:text-emerald-600 transition-colors"
                 >
                   productivity.iamdane.me
                 </h3>
-                <p
-                  class="text-gray-500 text-sm leading-relaxed mb-6 font-light"
-                >
-                  touch grass
+                <p class="text-gray-500 text-sm leading-relaxed">
+                  touch grass 🌱 — personal dashboard for focus and productivity
+                  tools.
                 </p>
               </div>
-
-              <div class="px-8 pb-8 mt-auto">
+              <div class="px-5 pb-4 mt-auto">
                 <div
-                  class="h-48 w-full rounded-lg overflow-hidden border border-gray-100 bg-gray-50 relative"
+                  class="h-36 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200"
                 >
                   <img
                     src="./public/productivity.jpeg"
-                    alt="Status Preview"
-                    class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    alt="Productivity Preview"
                   />
                 </div>
               </div>
-
-              <div class="px-8 py-4 border-t border-gray-50 bg-gray-50/50">
-                <a
-                  href="https://productivity.iamdane.me"
-                  target="_blank"
-                  class="inline-flex items-center text-sm font-medium text-black hover:opacity-70 transition-opacity"
+              <div class="px-5 py-3 border-t border-gray-100 bg-gray-50/40">
+                <span
+                  class="inline-flex items-center text-sm font-medium text-gray-700 group-hover:text-black transition-colors"
                 >
-                  Go Productive!
+                  Go Productive
                   <svg
-                    class="w-4 h-4 ml-1"
+                    class="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -409,73 +1117,271 @@
                       stroke-linecap="round"
                       stroke-linejoin="round"
                       stroke-width="2"
-                      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                      d="M9 5l7 7-7 7"
                     ></path>
                   </svg>
-                </a>
+                </span>
               </div>
             </div>
 
+            <!-- Card 5: Music -->
+            <div
+              onclick="window.open('https://music.iamdane.me', '_blank')"
+              class="group bg-white rounded-xl border border-gray-200 overflow-hidden transition-all duration-300 hover:shadow-lg hover:border-gray-300 cursor-pointer flex flex-col h-full"
+            >
+              <div class="p-5 pb-2">
+                <div class="flex items-center justify-between mb-3">
+                  <span
+                    class="text-[11px] font-semibold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-2.5 py-1 rounded-md"
+                    >Music</span
+                  >
+                  <div class="flex items-center gap-1.5">
+                    <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span>
+                    <span class="text-[10px] text-gray-400">streaming</span>
+                  </div>
+                </div>
+                <h3
+                  class="text-lg font-semibold mb-1 group-hover:text-cyan-600 transition-colors"
+                >
+                  music.iamdane.me
+                </h3>
+                <p class="text-gray-500 text-sm leading-relaxed">
+                  feeling sad? or happy? just listen to the music lol — personal
+                  audio stream.
+                </p>
+              </div>
+              <div class="px-5 pb-4 mt-auto">
+                <div
+                  class="h-36 w-full rounded-lg overflow-hidden bg-gray-100 border border-gray-200"
+                >
+                  <img
+                    src="./public/music.png"
+                    class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    alt="Music Preview"
+                  />
+                </div>
+              </div>
+              <div class="px-5 py-3 border-t border-gray-100 bg-gray-50/40">
+                <span
+                  class="inline-flex items-center text-sm font-medium text-gray-700 group-hover:text-black transition-colors"
+                >
+                  Listen Now
+                  <svg
+                    class="w-4 h-4 ml-1 group-hover:translate-x-0.5 transition-transform"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M9 5l7 7-7 7"
+                    ></path>
+                  </svg>
+                </span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      <section id="about" class="py-32 px-6 bg-white">
-        <div class="max-w-2xl mx-auto">
-          <h2 class="text-3xl font-semibold tracking-tight mb-8">
-            what's this? 
+      <section id="contact" class="py-20 md:py-32 px-6 bg-[#0a0a0a] text-white">
+        <div class="max-w-xl mx-auto text-center">
+          <h2 class="text-3xl md:text-4xl font-semibold tracking-tight mb-4">
+            stay in touch
           </h2>
-          <div class="prose prose-lg text-gray-600 font-light leading-relaxed">
-            <p class="mb-6">
-              Welcome to <span class="font-medium text-black">iamdane.me</span>.
-            </p>
-            <p class="mb-6">
-              everything here is decentralized and running on its own subdomain because modular is just better 🤝 cleaner architecture, better vibes
-            </p>
-            <p>
-              it's just a direct window into my infrastructure—from dns management to ui design.
+          <p class="text-gray-400 mb-12">
+            just a place for my technical logs and projects ✌️
+          </p>
+
+          <!-- Social links with icons -->
+          <div class="flex flex-wrap justify-center items-center gap-5 mb-12">
+            <!-- Email -->
+            <a
+              href="mailto:zidanesolahudin123@gmail.com"
+              class="group flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div
+                class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-all border border-white/20"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-white"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="1.5"
+                    d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+                  />
+                </svg>
+              </div>
+              <span
+                class="text-xs text-gray-400 group-hover:text-white transition-colors"
+                >Email</span
+              >
+            </a>
+
+            <!-- GitHub -->
+            <a
+              href="https://github.com/Hotaru-git3"
+              target="_blank"
+              class="group flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div
+                class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-all border border-white/20"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    fill-rule="evenodd"
+                    d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"
+                    clip-rule="evenodd"
+                  />
+                </svg>
+              </div>
+              <span
+                class="text-xs text-gray-400 group-hover:text-white transition-colors"
+                >GitHub</span
+              >
+            </a>
+
+            <!-- Instagram (icon bener) -->
+            <a
+              href="https://www.instagram.com/zdansln?igsh=ejlyN3dpYzVnNXF4"
+              target="_blank"
+              class="group flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div
+                class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-all border border-white/20"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M12 2.163c3.204 0 3.584.012 4.85.07 1.366.062 2.633.336 3.608 1.311.975.975 1.249 2.242 1.311 3.608.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.062 1.366-.336 2.633-1.311 3.608-.975.975-2.242 1.249-3.608 1.311-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.366-.062-2.633-.336-3.608-1.311-.975-.975-1.249-2.242-1.311-3.608-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.062-1.366.336-2.633 1.311-3.608.975-.975 2.242-1.249 3.608-1.311 1.266-.058 1.646-.07 4.85-.07zM12 0C8.741 0 8.332.014 7.052.072 5.77.131 4.646.413 3.627 1.031 2.607 1.65 1.79 2.49 1.171 3.509.553 4.528.271 5.652.212 6.934.153 8.214.14 8.623.14 11.88s.013 3.666.072 4.946c.059 1.282.341 2.406.959 3.425.619 1.019 1.459 1.836 2.478 2.455 1.019.618 2.143.9 3.425.959 1.28.059 1.689.072 4.946.072s3.666-.013 4.946-.072c1.282-.059 2.406-.341 3.425-.959 1.019-.619 1.836-1.459 2.455-2.478.618-1.019.9-2.143.959-3.425.059-1.28.072-1.689.072-4.946s-.013-3.666-.072-4.946c-.059-1.282-.341-2.406-.959-3.425-.619-1.019-1.459-1.836-2.478-2.455-1.019-.618-2.143-.9-3.425-.959C15.666.014 15.257 0 12 0z"
+                  />
+                  <path
+                    d="M12 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8z"
+                  />
+                  <circle cx="18.406" cy="5.594" r="1.44" />
+                </svg>
+              </div>
+              <span
+                class="text-xs text-gray-400 group-hover:text-white transition-colors"
+                >Instagram</span
+              >
+            </a>
+
+            <!-- LinkedIn -->
+            <a
+              href="https://www.linkedin.com/in/zidane-solahudin-573933345"
+              target="_blank"
+              class="group flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div
+                class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-all border border-white/20"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451c.979 0 1.771-.773 1.771-1.729V1.729C24 .774 23.204 0 22.225 0z"
+                  />
+                </svg>
+              </div>
+              <span
+                class="text-xs text-gray-400 group-hover:text-white transition-colors"
+                >LinkedIn</span
+              >
+            </a>
+
+            <!-- Twitter/X -->
+            <a
+              href="#"
+              target="_blank"
+              class="group flex flex-col items-center gap-2 transition-all duration-300 hover:-translate-y-1"
+            >
+              <div
+                class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-white/10 backdrop-blur-sm flex items-center justify-center group-hover:bg-white/20 transition-all border border-white/20"
+              >
+                <svg
+                  class="w-5 h-5 md:w-6 md:h-6 text-white"
+                  fill="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"
+                  />
+                </svg>
+              </div>
+              <span
+                class="text-xs text-gray-400 group-hover:text-white transition-colors"
+                >Twitter</span
+              >
+            </a>
+          </div>
+
+          <!-- Email chip with copy function -->
+          <div
+            class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 border border-white/10 text-gray-300 text-sm mb-12"
+          >
+            <svg
+              class="w-4 h-4"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="1.5"
+                d="M21.75 6.75v10.5a2.25 2.25 0 01-2.25 2.25h-15a2.25 2.25 0 01-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0019.5 4.5h-15a2.25 2.25 0 00-2.25 2.25m19.5 0v.243a2.25 2.25 0 01-1.07 1.916l-7.5 4.615a2.25 2.25 0 01-2.36 0L3.32 8.91a2.25 2.25 0 01-1.07-1.916V6.75"
+              />
+            </svg>
+            <span>zidanesolahudin123@gmail.com</span>
+            <button
+              onclick="
+                navigator.clipboard?.writeText('zidanesolahudin123@gmail.com')
+              "
+              class="ml-1 text-gray-500 hover:text-white transition-colors"
+            >
+              <svg
+                class="w-3.5 h-3.5"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="1.5"
+                  d="M15.75 17.25v3.375c0 .621-.504 1.125-1.125 1.125h-9.75a1.125 1.125 0 01-1.125-1.125V7.875c0-.621.504-1.125 1.125-1.125H6.75a9.06 9.06 0 011.5.124m7.5 10.376h3.375c.621 0 1.125-.504 1.125-1.125V11.25c0-4.46-3.243-8.161-7.5-8.876a9.06 9.06 0 00-1.5-.124H9.375c-.621 0-1.125.504-1.125 1.125v3.5m7.5 10.375h-6.75a1.125 1.125 0 01-1.125-1.125v-9.25m12 6.625v-1.875a3.375 3.375 0 00-3.375-3.375h-1.5a1.125 1.125 0 01-1.125-1.125v-1.5a3.375 3.375 0 00-3.375-3.375H9.75"
+                />
+              </svg>
+            </button>
+          </div>
+
+          <div class="pt-8 border-t border-gray-800">
+            <p class="text-xs text-gray-500 font-mono">
+              SYSTEM STATUS: ONLINE <br />
+              © 2026 iamdane.me — built with intent ⚡
             </p>
           </div>
         </div>
       </section>
-
-      <section id="contact" class="py-32 px-6 bg-[#0a0a0a] text-white">
-  <div class="max-w-xl mx-auto text-center">
-    <h2 class="text-3xl font-semibold tracking-tight mb-4">stay in touch</h2>
-    <p class="text-gray-400 mb-10">
-      just a place for my technical logs and projects ✌️
-    </p>
-
-    <div class="flex flex-col md:flex-row justify-center items-center gap-4">
-      <a href="mailto:zidanesolahudin123@gmail.com" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
-        hello@iamdane.me
-      </a>
-      <a href="https://github.com/Hotaru-git3" target="_blank" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
-        GitHub
-      </a>
-      <a href="https://www.instagram.com/zdansln?igsh=ejlyN3dpYzVnNXF4" target="_blank" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
-        Instagram
-      </a>
-      <a href="https://www.linkedin.com/in/zidane-solahudin-573933345" target="_blank" class="w-full md:w-auto px-8 py-3 bg-white text-black font-medium rounded-lg hover:bg-gray-200 transition-colors">
-        In
-      </a>
-    </div>
-
-    <div class="mt-16 pt-8 border-t border-gray-800">
-      <p class="text-xs text-gray-500 font-mono">
-        SYSTEM STATUS: ONLINE <br />
-        © 2026 iamdane.me — built with intent ⚡
-      </p>
-    </div>
-  </div>
-</section>
     </main>
 
-    <!-- Tailwind Safelist: Hidden div to prevent class purging -->
-    <div
-      class="hidden bg-white bg-white/90 z-40 z-50 pt-20 justify-center -translate-y-full translate-y-0 shadow-sm border-gray-200 overflow-hidden"
-    ></div>
-
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="./src/main.js"></script>
   </body>
 </html>

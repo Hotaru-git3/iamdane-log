@@ -1,71 +1,60 @@
-document.addEventListener('DOMContentLoaded', () => {
-  const navbar = document.getElementById('navbar');
-  const btn = document.getElementById('mobile-menu-btn');
-  const menu = document.getElementById('mobile-menu');
+document.addEventListener("DOMContentLoaded", () => {
+        const navbar = document.getElementById("navbar");
+        const btn = document.getElementById("mobile-menu-btn");
+        const menu = document.getElementById("mobile-menu");
+        const overlay = document.getElementById("mobile-overlay");
+        const closeBtn = document.getElementById("mobile-menu-close");
 
-  // --- 1. STICKY NAVBAR LOGIC ---
-  const handleScroll = () => {
-    if (window.scrollY > 10) {
-      navbar.classList.add('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'border-gray-200');
-      navbar.classList.remove('border-transparent');
-    } else {
-      navbar.classList.remove('bg-white/90', 'backdrop-blur-md', 'shadow-sm', 'border-gray-200');
-      navbar.classList.add('border-transparent');
-    }
-  };
-  window.addEventListener('scroll', handleScroll);
+        // scroll effect for header
+        const handleScroll = () => {
+          if (window.scrollY > 10) {
+            navbar.classList.add("shadow-sm");
+          } else {
+            navbar.classList.remove("shadow-sm");
+          }
+        };
+        window.addEventListener("scroll", handleScroll);
+        handleScroll();
 
-  // --- 2. MOBILE MENU LOGIC (SLIDE FLOW) ---
-  if (btn && menu) {
-    const icon = btn.querySelector('svg');
+        // open/close functions
+        const openMenu = () => {
+          menu.classList.remove("translate-x-full");
+          menu.classList.add("translate-x-0");
+          overlay.classList.remove("hidden");
+          setTimeout(() => overlay.classList.remove("opacity-0"), 10);
+          document.body.style.overflow = "hidden";
+        };
+        const closeMenu = () => {
+          menu.classList.add("translate-x-full");
+          menu.classList.remove("translate-x-0");
+          overlay.classList.add("opacity-0");
+          setTimeout(() => overlay.classList.add("hidden"), 280);
+          document.body.style.overflow = "";
+        };
 
-    // Open: Slide Down (Remove negative translate)
-    const openMenu = () => {
-      menu.classList.remove('-translate-y-full');
-      menu.classList.add('translate-y-0');
-      document.body.style.overflow = 'hidden'; // Lock Scroll
-      
-      // Swap to 'X' icon
-      if(icon) icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />`;
-    };
+        if (btn) btn.addEventListener("click", openMenu);
+        if (closeBtn) closeBtn.addEventListener("click", closeMenu);
+        if (overlay) overlay.addEventListener("click", closeMenu);
+        
+        document.querySelectorAll(".mobile-link").forEach(link => {
+          link.addEventListener("click", closeMenu);
+        });
 
-    // Close: Slide Up (Add negative translate)
-    const closeMenu = () => {
-      menu.classList.add('-translate-y-full');
-      menu.classList.remove('translate-y-0');
-      document.body.style.overflow = ''; // Unlock Scroll
-
-      // Swap to 'Hamburger' icon
-      if(icon) icon.innerHTML = `<path stroke-linecap="round" stroke-linejoin="round" d="M3.75 9h16.5m-16.5 6.75h16.5" />`;
-    };
-
-    // Button Click Handler
-    btn.addEventListener('click', () => {
-      // If class contains '-translate-y-full', it is CLOSED. So we OPEN it.
-      const isClosed = menu.classList.contains('-translate-y-full');
-      if (isClosed) {
-        openMenu();
-      } else {
-        closeMenu();
-      }
-    });
-
-    // Close when clicking a link
-    document.querySelectorAll('.mobile-link').forEach(link => {
-      link.addEventListener('click', closeMenu);
-    });
-  }
-
-  // --- 3. ANIMATION CSS INJECTION ---
-  const styleSheet = document.createElement("style");
-  styleSheet.innerText = `
-    @keyframes fadeInUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-    .animate-fade-in-up {
-      animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    }
-  `;
-  document.head.appendChild(styleSheet);
-});
+        // intersection observer for reveal animations
+        const observerOptions = { root: null, rootMargin: "0px", threshold: 0.12 };
+        const observer = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove("opacity-0", "translate-y-12");
+              entry.target.classList.add("opacity-100", "translate-y-0");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, observerOptions);
+        
+        const revealElements = document.querySelectorAll(`#hero h1, #hero a, section h2, section > p, .grid > div, .bg-white.rounded-2xl`);
+        revealElements.forEach(el => {
+          el.classList.add("transition-all", "duration-700", "ease-out", "opacity-0", "translate-y-12");
+          observer.observe(el);
+        });
+      });
