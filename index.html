@@ -30,6 +30,30 @@
       html {
         scroll-behavior: smooth;
       }
+
+      /* Prevent any default anchor behavior on button */
+      #mobile-menu-btn,
+      #mobile-menu-btn * {
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      #mobile-menu-btn:focus,
+      #mobile-menu-btn:active {
+        outline: none;
+      }
+
+      /* Pastikan button tidak punya default behavior */
+      #mobile-menu-btn {
+        -webkit-tap-highlight-color: transparent;
+        touch-action: manipulation;
+      }
+
+      /* Prevent any anchor default on mobile links */
+      .mobile-link {
+        cursor: pointer;
+        touch-action: manipulation;
+      }
       /* no extra styles needed - Tailwind handles everything */
     </style>
     <title>iamdane.me | Digital Hub</title>
@@ -45,8 +69,8 @@
         class="max-w-6xl mx-auto px-5 h-14 md:h-16 flex items-center justify-between"
       >
         <div
-          class="text-base md:text-lg font-medium tracking-tight text-gray-900 cursor-pointer hover:opacity-70 transition-opacity"
           id="logo"
+          class="text-base md:text-lg font-medium tracking-tight text-gray-900 cursor-pointer hover:opacity-70 transition-opacity"
         >
           iamdane.me
         </div>
